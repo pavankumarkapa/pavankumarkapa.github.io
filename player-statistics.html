@@ -1,0 +1,365 @@
+<style></style><script src=https://d3js.org/d3.v4.min.js charset=utf-8></script><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css integrity=sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ crossorigin=anonymous><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><link rel=stylesheet href=styles/main.css><link rel=stylesheet href=style1.css><nav class="navbar navbar-light navbar-toggleable-xl bg-faded fixed-top"><div class=container><a class=navbar-brand href=index.html>eprotector</a><div class=navbar-collapse><ul class="navbar-nav ml-auto"><li class="nav-item active"><a class=nav-link href=index.html>Dashboard <span class=sr-only>(current)</span></a><li class=nav-item><a class=nav-link href=player-statistics.html>Player Statistics</a></ul></div></div></nav><div class=container-fluid><div class=mainContainer><div class=headtop><div class=head><div class=row><div class=col-md-4><input type=email class=form-control id=inputEmail3 placeholder=playerName></div><div class=col-md-8><div class=radio><div class=dateSearch><label>Month</label><div class=dateForm><select type=text id=monthBoxID name=month><option value=0>January<option value=1>February<option value=2>March<option value=3>April<option value=4>May<option value=5>June<option value=6>July<option value=7>August<option value=8>September<option value=9>October<option value=10>November<option value=11>December</select></div><div class=year><label>Year</label><select type=text id=yearBoxID name=year><option value=2017>2017<option value=2016>2016<option value=2015>2015</select></div><div class=search><button type=text id=btn>Submit</button></div></div></div></div></div></div><div class=row><div class="col-md-6 boxs"><div class=row><div class=col-md-6><div class=Hands><div class=header><p>Hands Played</div><div class=data><p>64375 Hands</div></div></div><div class=col-md-6><div class=Hands><div class=header><p>Biggest Pot</div><div class=data><p>$ 120.50</div></div></div></div><div class=row><div class=col-md-6><div class=Hands><div class=header><p>Best Hand</div><div class=data><p>Four of a Kind AA</div></div></div><div class=col-md-6><div class=Hands><div class=header><p>Best Call Ratio</div><div class=data><p>3.1</div></div></div></div><div class=row><div class=col-md-6><div class=Hands><div class=header><p>Hand Selection</div><div class=data><p>Pair of AA</div></div></div><div class=col-md-6><div class=Hands><div class=header><p>Time to Act</div><div class=data><p>13sec</div></div></div></div></div><div class=col-md-6><div class=donut><div class=header><p>Hands Played</div><div class="graph graph1"><div id=cirsm1></div></div></div><div class=donut><div class=header><p>Time to Act</div><div class=graph><div class=ss id=cirsm2></div></div></div><div class=donut><div class=header><p>Action Stats</div><div class=graph><div class=ss id=cirsm3></div></div></div><div class=donut><div class=header><p>Best Call Ratio</div><div class=graph><div class=ss id=cirsm4></div></div></div></div></div><div class=table><table class="table table-hover table1"><thead><tr><th>UserId<th>VPIP<th>P.F.R<th>Raises%<th>Call%<th>Bet%<th>Fold%<th>RoundCount<th>CheckRaiseCount<th>ColdCallCount<th>Bet3%<th>Bet4%<th>Showdown<th>Steal<th>FoldedSteal<th>HandCount<tbody><tr><th scope=row>ppoker219<td>0<td>0<td>0<td>0<td>0<td>2<td>4<td>0<td>0<td>0<td>0<td>0<td>0<td>1<td>4<tr><th scope=row>ppoker446<td>0<td>0<td>0<td>0<td>0<td>2<td>4<td>0<td>0<td>0<td>0<td>0<td>0<td>1<td>4<tr><tr><th scope=row>ppoker548<td>0<td>0<td>0<td>0<td>0<td>2<td>4<td>0<td>0<td>0<td>0<td>0<td>0<td>1<td>4<tr><th scope=row>ppoker225<td>0<td>0<td>0<td>0<td>0<td>2<td>4<td>0<td>0<td>0<td>0<td>0<td>0<td>1<td>4</table></div></div></div></div><script src=script1.js></script><script>var colors = {
+			'red': '#ff0000',
+			'orange': '#ff9800',
+			'yellow': '#ffeb3b',
+			'green': '#4CAF50'
+		};
+		var cirsm1 = function(cssSelector) {
+			var canvas = d3.select(cssSelector)
+			var width = 140;
+			var height = 140;	
+			var color = colors.green;
+
+			var radius = 68;
+			var border = 10;
+			var padding = 2;
+			var startPercent = 0;
+			var endPercent = 0.90;
+
+
+			var twoPi = Math.PI * 2;
+			var formatPercent = d3.format('.0%');
+			var boxSize = (radius + padding) * 2;
+
+
+			var count = Math.abs((endPercent - startPercent) / 0.01);
+			var step = endPercent < startPercent ? -0.01 : 0.01;
+
+			var arc = d3.arc()
+			.startAngle(0)
+			.innerRadius(radius)
+			.outerRadius(radius - border);
+
+			var parent = d3.select('div#cirsm1');
+
+
+			var svg = parent.append('svg')
+			.attr('width', width)
+			.attr('height', height);
+
+			
+
+			var g = svg.append('g')
+			.attr('transform', 'translate(' + boxSize / 2 + ',' + boxSize / 2 + ')');
+
+			var meter = g.append('g')
+			.attr('class', 'progress-meter');
+
+			meter.append('path')
+				.attr('class', 'background')
+				.attr('fill', '#a9a9a9')
+				.attr('fill-opacity', 0.5)
+				.attr('d', arc.endAngle(twoPi));
+
+			var foreground = meter.append('path')
+			.attr('class', 'foreground')
+			.attr('fill', color)
+			.attr('fill-opacity', 1)
+			.attr('stroke', color)
+			.attr('stroke-width', 2)
+			.attr('stroke-opacity', 1)
+			.attr('filter', 'url(#blur)');
+
+			var front = meter.append('path')
+			.attr('class', 'foreground')
+			.attr('fill', color)
+			.attr('fill-opacity', 1);
+
+			var numberText = svg.append('text')
+			.attr('class', 'text')
+			.attr('transform', 'translate(75,72)')
+			.attr('fill', '#000')
+			.attr('text-anchor', 'middle')
+			.attr('font-size', '40px')
+			.attr('font-weight', '600')
+			.attr('dy', '.35em');
+
+			function updateProgress(progress) {
+				foreground.attr('d', arc.endAngle(twoPi * progress));
+				front.attr('d', arc.endAngle(twoPi * progress));
+				numberText.text(formatPercent(progress));
+			}
+
+			var progress = startPercent;
+
+			(function loops() {
+				updateProgress(progress);
+
+				if (count > 0) {
+					count--;
+					progress += step;
+					setTimeout(loops, 10);
+				}
+			})();
+		}
+		var cirsm2 = function(cssSelector) {
+			var canvas = d3.select(cssSelector)
+			var width = 140;
+			var height = 140;	
+			var color = colors.orange;
+
+			var radius = 68;
+			var border = 10;
+			var padding = 2;
+			var startPercent = 0;
+			var endPercent = 0.70;
+
+
+			var twoPi = Math.PI * 2;
+			var formatPercent = d3.format('.0%');
+			var boxSize = (radius + padding) * 2;
+
+
+			var count = Math.abs((endPercent - startPercent) / 0.01);
+			var step = endPercent < startPercent ? -0.01 : 0.01;
+
+			var arc = d3.arc()
+			.startAngle(0)
+			.innerRadius(radius)
+			.outerRadius(radius - border);
+
+			var parent = d3.select('div#cirsm2');
+
+
+			var svg = parent.append('svg')
+			.attr('width', width)
+			.attr('height', height);
+
+			
+
+			var g = svg.append('g')
+			.attr('transform', 'translate(' + boxSize / 2 + ',' + boxSize / 2 + ')');
+
+			var meter = g.append('g')
+			.attr('class', 'progress-meter');
+
+			meter.append('path')
+				.attr('class', 'background')
+				.attr('fill', '#a9a9a9')
+				.attr('fill-opacity', 0.5)
+				.attr('d', arc.endAngle(twoPi));
+
+			var foreground = meter.append('path')
+			.attr('class', 'foreground')
+			.attr('fill', color)
+			.attr('fill-opacity', 1)
+			.attr('stroke', color)
+			.attr('stroke-width', 2)
+			.attr('stroke-opacity', 1)
+			.attr('filter', 'url(#blur)');
+
+			var front = meter.append('path')
+			.attr('class', 'foreground')
+			.attr('fill', color)
+			.attr('fill-opacity', 1);
+
+			var numberText = svg.append('text')
+			.attr('class', 'text')
+			.attr('transform', 'translate(75,72)')
+			.attr('fill', '#000')
+			.attr('text-anchor', 'middle')
+			.attr('font-size', '40px')
+			.attr('font-weight', '600')
+			.attr('dy', '.35em');
+
+			function updateProgress(progress) {
+				foreground.attr('d', arc.endAngle(twoPi * progress));
+				front.attr('d', arc.endAngle(twoPi * progress));
+				numberText.text(formatPercent(progress));
+			}
+
+			var progress = startPercent;
+
+			(function loops() {
+				updateProgress(progress);
+
+				if (count > 0) {
+					count--;
+					progress += step;
+					setTimeout(loops, 10);
+				}
+			})();
+		}
+		
+		var cirsm3 = function(cssSelector) {
+			var canvas = d3.select(cssSelector)
+			var width = 140;
+			var height = 140;	
+			var color = colors.orange;
+
+			var radius = 68;
+			var border = 10;
+			var padding = 2;
+			var startPercent = 0;
+			var endPercent = 0.60;
+
+
+			var twoPi = Math.PI * 2;
+			var formatPercent = d3.format('.0%');
+			var boxSize = (radius + padding) * 2;
+
+
+			var count = Math.abs((endPercent - startPercent) / 0.01);
+			var step = endPercent < startPercent ? -0.01 : 0.01;
+
+			var arc = d3.arc()
+			.startAngle(0)
+			.innerRadius(radius)
+			.outerRadius(radius - border);
+
+			var parent = d3.select('div#cirsm3');
+
+
+			var svg = parent.append('svg')
+			.attr('width', width)
+			.attr('height', height);
+
+			
+
+			var g = svg.append('g')
+			.attr('transform', 'translate(' + boxSize / 2 + ',' + boxSize / 2 + ')');
+
+			var meter = g.append('g')
+			.attr('class', 'progress-meter');
+
+			meter.append('path')
+				.attr('class', 'background')
+				.attr('fill', '#a9a9a9')
+				.attr('fill-opacity', 0.5)
+				.attr('d', arc.endAngle(twoPi));
+
+			var foreground = meter.append('path')
+			.attr('class', 'foreground')
+			.attr('fill', color)
+			.attr('fill-opacity', 1)
+			.attr('stroke', color)
+			.attr('stroke-width', 2)
+			.attr('stroke-opacity', 1)
+			.attr('filter', 'url(#blur)');
+
+			var front = meter.append('path')
+			.attr('class', 'foreground')
+			.attr('fill', color)
+			.attr('fill-opacity', 1);
+
+			var numberText = svg.append('text')
+			.attr('class', 'text')
+			.attr('transform', 'translate(75,72)')
+			.attr('fill', '#000')
+			.attr('text-anchor', 'middle')
+			.attr('font-size', '40px')
+			.attr('font-weight', '600')
+			.attr('dy', '.35em');
+
+			function updateProgress(progress) {
+				foreground.attr('d', arc.endAngle(twoPi * progress));
+				front.attr('d', arc.endAngle(twoPi * progress));
+				numberText.text(formatPercent(progress));
+			}
+
+			var progress = startPercent;
+
+			(function loops() {
+				updateProgress(progress);
+
+				if (count > 0) {
+					count--;
+					progress += step;
+					setTimeout(loops, 10);
+				}
+			})();
+		}
+		
+		var cirsm4 = function(cssSelector) {
+			var canvas = d3.select(cssSelector)
+			var width = 140;
+			var height = 140;	
+			var color = colors.yellow;
+
+			var radius = 68;
+			var border = 10;
+			var padding = 2;
+			var startPercent = 0;
+			var endPercent = 0.25;
+
+
+			var twoPi = Math.PI * 2;
+			var formatPercent = d3.format('.0%');
+			var boxSize = (radius + padding) * 2;
+
+
+			var count = Math.abs((endPercent - startPercent) / 0.01);
+			var step = endPercent < startPercent ? -0.01 : 0.01;
+
+			var arc = d3.arc()
+			.startAngle(0)
+			.innerRadius(radius)
+			.outerRadius(radius - border);
+
+			var parent = d3.select('div#cirsm4');
+
+
+			var svg = parent.append('svg')
+			.attr('width', width)
+			.attr('height', height);
+
+			
+
+			var g = svg.append('g')
+			.attr('transform', 'translate(' + boxSize / 2 + ',' + boxSize / 2 + ')');
+
+			var meter = g.append('g')
+			.attr('class', 'progress-meter');
+
+			meter.append('path')
+				.attr('class', 'background')
+				.attr('fill', '#a9a9a9')
+				.attr('fill-opacity', 0.5)
+				.attr('d', arc.endAngle(twoPi));
+
+			var foreground = meter.append('path')
+			.attr('class', 'foreground')
+			.attr('fill', color)
+			.attr('fill-opacity', 1)
+			.attr('stroke', color)
+			.attr('stroke-width', 2)
+			.attr('stroke-opacity', 1)
+			.attr('filter', 'url(#blur)');
+
+			var front = meter.append('path')
+			.attr('class', 'foreground')
+			.attr('fill', color)
+			.attr('fill-opacity', 1);
+
+			var numberText = svg.append('text')
+			.attr('class', 'text')
+			.attr('transform', 'translate(75,72)')
+			.attr('fill', '#000')
+			.attr('text-anchor', 'middle')
+			.attr('font-size', '40px')
+			.attr('font-weight', '600')
+			.attr('dy', '.35em');
+
+			function updateProgress(progress) {
+				foreground.attr('d', arc.endAngle(twoPi * progress));
+				front.attr('d', arc.endAngle(twoPi * progress));
+				numberText.text(formatPercent(progress));
+			}
+
+			var progress = startPercent;
+
+			(function loops() {
+				updateProgress(progress);
+
+				if (count > 0) {
+					count--;
+					progress += step;
+					setTimeout(loops, 10);
+				}
+			})();
+		}
+		
+		cirsm1('#cirsm1');
+		cirsm2('#cirsm2');
+		cirsm3('#cirsm3');
+		cirsm4('#cirsm4');</script>
