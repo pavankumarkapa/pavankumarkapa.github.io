@@ -1,0 +1,387 @@
+@charset "utf-8";
+/* ==========================================================================
+CSS Reset
+========================================================================== */
+/*
+* html5doctor.com Reset Stylesheet v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/)
+* Richard Clark (http://richclarkdesign.com)
+* http://cssreset.com
+*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}
+*,*:after,*:before {box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;-o-box-sizing: border-box;}
+
+/* ==========================================================================
+Common CSS
+========================================================================== */
+body {font: normal 14px/20px Arial, Helvetica, sans-serif;color: #4b4b4b;background: #fff;}
+h1, h2, h3, h4, h5, h6 {font-weight: normal;}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance: button;cursor: pointer;}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {-webkit-appearance: none;}
+button,input,optgroup,select,textarea {color: inherit;font: inherit;margin: 0;}
+button {overflow: visible;}
+input::-moz-selection {background: #b3d4fc;text-shadow: none;}
+
+a {outline: none;text-decoration: none;color: #b41124;}
+a:hover,a:focus{text-decoration: underline;}
+.container {width: 960px;margin: 0 auto;}
+#wrapper {min-height: 100%;position: relative;}
+
+/* ==========================================================================
+Setting up the fonts
+========================================================================== */
+
+
+/* ==========================================================================
+Header
+========================================================================== */
+
+header{
+	padding: 0;
+}
+
+
+/* ==========================================================================
+Footer
+========================================================================== */
+
+footer{
+}
+
+/* ==========================================================================
+Main
+========================================================================== */
+
+#main{
+}
+
+
+
+
+/* Animation Block */
+
+header {
+	min-height: 100px;
+
+}
+.container {
+	position: relative;
+}
+.animation-container {
+	background: #020003;
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 650px;
+	height: 650px;
+}
+.animation-block {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+circle {
+	fill: none;
+	stroke: #2c924a;
+	transform-origin: center;
+}
+
+.small-circle1 circle {
+	stroke-width: 3;	
+}
+.health-beat {
+	transform: translate(168px, 164px);
+}
+
+.health-beat .beat {
+	stroke-dasharray: 200;
+	animation: beat 3s linear forwards infinite;
+	stroke: white;
+}
+
+@keyframes beat {
+	0% {
+		position: absolute;
+		top:0;
+		left: 0;
+		stroke-dashoffset: 200;
+	}
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+.c-1 circle {
+
+	stroke-width: 7;
+	stroke-dasharray: 70, 113;
+	animation: c-1 6s linear infinite;
+
+}
+@keyframes c-1 {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+.c-1 circle.line {
+	stroke-width: 1;
+	stroke-dasharray: 2, 4;
+	animation: c-1-line 6s linear infinite;
+}
+@keyframes c-1-line {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+.c-2 circle {	
+	stroke-width: 7;
+	stroke-dasharray: 43, 20;
+	animation: c-2 10s linear infinite;	
+}
+.c-2 circle.line {
+	stroke-width: 1;
+	stroke-dasharray: 2, 0;
+}
+@keyframes c-2 {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+.c-3 circle {	
+	stroke: #79f49a;
+	stroke-width: 11px;
+	stroke-dasharray: 11, 3;		
+}
+.c-3 circle.line {
+	stroke: #020003;
+	stroke-width: 15px;
+	stroke-dasharray: 650;
+	stroke-dashoffset: -650;
+	animation: c-3 3s infinite;
+	transform: rotate(135deg);
+}
+.c-3 circle.line2 {
+	stroke-width: 1px;
+	stroke-dasharray: 2, 4;
+}
+
+@keyframes c-3 {
+	100%,0% {
+		stroke-dashoffset: -60;
+	}
+
+	20% {
+		stroke-dashoffset: -120;
+	}  
+	40% {
+		stroke-dashoffset: -160;
+	}
+	60% {
+		stroke-dashoffset: -200;
+	}
+}
+
+.c-4 circle {	
+	stroke-width: 7;
+	stroke-dasharray: 117, 20;
+	animation: c-4 20s linear infinite;	
+}
+.c-4 circle.line {
+	stroke-width: 1;
+	stroke-dasharray: 43, 0;	
+}
+@keyframes c-4 {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+.c-5 circle {	
+	stroke: #123f1c;
+	stroke-width: 24;
+	stroke-dasharray: 369, 70;		
+	transform: rotate(-74deg);
+	animation: c-5 8s linear infinite;
+}
+.c-5 circle.line {
+	stroke: #29914b;
+	stroke-width: 24;
+	stroke-dasharray: 200, 243;
+	transform: rotate(-42deg);
+	animation: c-5-line 8s linear infinite;
+}
+@keyframes c-5 {
+	100%,0% {
+		transform: rotate(-84deg);
+	}
+	25% {
+		transform: rotate(-74deg);
+	}
+
+	50% {
+		transform: rotate(-64deg);
+	}
+	75% {
+		transform: rotate(-74deg);
+	}
+}
+@keyframes c-5-line {
+	100%,0% {
+		transform: rotate(-52deg);
+	}
+	25% {
+		transform: rotate(-42deg);
+	}
+
+	50% {
+		transform: rotate(-32deg);
+	}
+	75% {
+		transform: rotate(-42deg);
+	}
+}
+
+.half-circle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	
+	transform: translate(-50%,-50%);
+	
+}
+.half-circle svg {
+	transform-origin: center;
+	animation:half-cr 3s  linear infinite;
+}
+.half-cr {
+	
+	transform: translate(29px, 199px);	
+}
+
+.half-cr .hf-line {
+	stroke-dasharray: 87, 20;
+	stroke: #2d9349;
+	transform-origin: center;	
+}
+
+@keyframes half-cr {
+	100%,0% {
+		transform: rotate(10deg);
+	}
+	25% {
+		transform: rotate(0deg);
+	}
+
+	50% {
+		transform: rotate(-10deg);
+	}
+	75% {
+		transform: rotate(0deg);
+	}
+}
+.left-circle {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+.left-circle svg {
+	transform-origin: center;
+	transform: rotate(90deg);
+}
+
+.lt-c1 {
+	transform: translate(34px, 227px);
+}
+.left-circle .hf-line {
+	stroke: #1c5c2c;
+	stroke-width: 15px;
+    stroke-dasharray: 20, 10;
+}
+.left-circle .hf-line2 {
+	stroke: #020003;
+	stroke-width: 18px;
+    stroke-dasharray: 600;
+	stroke-dashoffset: 0;
+	animation: hf-line2 3s infinite;
+}
+
+@keyframes hf-line2 {
+	100%,0% {
+		stroke-dashoffset: 602;
+	}
+
+	20% {
+		stroke-dashoffset: 450;
+	}  
+	40% {
+		stroke-dashoffset: 300;
+	}
+	60% {
+		stroke-dashoffset: 250;
+	}	
+}
+
+
+
+.right-circle {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+.right-circle svg {
+	transform-origin: center;
+	transform: rotate(-90deg);
+}
+
+.lt-c1 {
+	transform: translate(34px, 227px);
+}
+.right-circle .hf-line {
+	stroke: #2c924a;
+	stroke-width: 15px;
+    stroke-dasharray: 20, 10;
+}
+.right-circle .hf-line2 {
+	stroke: #020003;
+	stroke-width: 18px;
+    stroke-dasharray: 600;
+	stroke-dashoffset: 0;
+	animation: hf-line3 3s infinite;
+}
+
+@keyframes hf-line3 {
+	100%,0% {
+		animation-delay: 8s;
+		stroke-dashoffset: -602;
+	}
+
+	20% {
+		stroke-dashoffset: -450;
+	}  
+	40% {
+		stroke-dashoffset: -300;
+	}
+	60% {
+		stroke-dashoffset: -250;
+	}	
+}

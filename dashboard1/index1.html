@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.animation-container{
+			background: #110f12;
+			position: relative;
+		}
+		circle {
+			transform-origin: center;
+		}
+		.c-1 circle {
+			stroke: white;
+			/*stroke-width:20px;
+			stroke-dasharray:100;*/
+			animation: c-1 25s linear infinite
+
+		}
+		@keyframes c-1{
+				0% {
+					 
+	  			}
+
+			  10% {
+			  }
+
+			  90% {
+			  }
+
+			  100% {
+			    transform: rotate(360deg);
+			  }
+		}
+		.c-2 circle{
+			/*stroke: white;*/
+			/*stroke-width:2px;*/
+			/*stroke-dasharray:100;*/
+			stroke: #56bb7c;
+			stroke-width:10px;
+			stroke-dasharray:85;
+			animation: c-2 25s linear infinite
+		}
+		@keyframes c-2{
+				0% {
+	  			}
+
+			  10% {
+			  }
+
+			  90% {
+			  }
+
+			  100% {
+			    transform: rotate(360deg);
+			  }
+		}
+		.c-3 circle{
+			/*stroke: white;*/
+			/*stroke-width:2px;*/
+			/*stroke-dasharray:100;*/
+			stroke: white;
+			transform: rotate(45deg);
+			/*stroke-width:10px;*/
+			/*stroke-dasharray:95;*/
+			animation: c-3 5s linear infinite
+		}
+		@keyframes c-3{
+				100%,0% {
+					 transform: rotate(55deg);
+	  			}
+
+			  25% {
+			  		transform: rotate(45deg)
+			  }
+
+			  50% {
+			  	transform: rotate(35deg);
+			  }
+
+			  75% {
+			    transform: rotate(45deg)
+			  }
+		}
+		.c-4 circle{
+			/*stroke: white;*/
+			/*stroke-width:2px;*/
+			/*stroke-dasharray:100;*/
+			stroke: #1d4229;
+			stroke-width:10px;
+			stroke-dasharray:65;
+			animation: c-4 5s linear infinite;
+			transform:rotate(45deg);
+		}
+		@keyframes c-4{
+				100%,0% {
+					 transform: rotate(55deg);
+	  			}
+
+			  25% {
+			  		transform: rotate(45deg);
+			  }
+
+			  50% {
+			  	transform: rotate(35deg);
+			  }
+
+			  75% {
+			    transform: rotate(45deg);
+			  }
+		}
+		
+	</style>
+</head>
+<body>
+<div class="animation-container">
+	<svg version="1.1"
+       baseProfile="full"
+       width="220" height="220"
+       xmlns="http://www.w3.org/2000/svg">
+       <g class = "c-1">
+       <circle cx="50%" cy="50%" r="80"></circle>
+       </g>
+       <g class = "c-2">
+       <circle cx="50%" cy="50%" r="80"></circle>
+       </g>
+       <g class = "c-3">
+       <circle cx="50%" cy="50%" r="40"></circle>
+       </g>
+       <g class = "c-4">
+       <circle cx="50%" cy="50%" r="40"></circle>
+       </g>
+</div>
+</body>
+</html>
